@@ -5,3 +5,42 @@
 论文数据上传至 https://github.com/ZhuzhPhloem/sunxc-lab/blob/main/sunxc-lab%E5%A4%8D%E7%8E%B0%E8%AE%BA%E6%96%87%E5%8E%9F%E5%A7%8B%E6%95%B0%E6%8D%AE.xlsx
 可以在该网站raw下载数据
 
+R语言代码 N accumulation (mg)
+# 加载需要的包
+library(ggplot2)
+
+# 创建数据框
+data <- data.frame(
+  Indicator = rep("N accumulation (mg)", 9),
+  Treatment1 = c("Mo 0.00 mg/kg", "Mo 0.00 mg/kg", "Mo 0.00 mg/kg", 
+                 "Mo 0.15 mg/kg", "Mo 0.15 mg/kg", "Mo 0.15 mg/kg", 
+                 "Mo 0.30 mg/kg", "Mo 0.30 mg/kg", "Mo 0.30 mg/kg"),
+  Treatment2 = c("N0.06", "N0.24", "N0.42", "N0.06", "N0.24", "N0.42", 
+                 "N0.06", "N0.24", "N0.42"),
+  Mean = c(159.46149, 384.41425, 586.43785, 115.61516, 482.21422, 
+           679.52815, 129.15355, 486.20496, 797.59174),
+  SD = c(52.85056, 23.37657, 31.96027, 10.96387, 50.5475, 60.0271, 
+         14.20665, 27.96296, 57.28248),
+  stringsAsFactors = FALSE
+)
+
+# 绘制柱状图并直接在R的图形窗口中显示
+ggplot(data, aes(x = Treatment2, y = Mean, fill = Treatment1)) +
+  geom_bar(stat = "identity", position = position_dodge(width = 0.7), width = 0.7) +
+  geom_errorbar(aes(ymin = Mean - SD, ymax = Mean + SD), position = position_dodge(width = 0.7), width = 0.25) +
+  labs(title = "N Accumulation (mg) by Treatment",
+       x = "Treatment",
+       y = "Mean N Accumulation (mg)",
+       fill = "Mo Treatment") +
+  theme_minimal() +
+  theme(
+    plot.background = element_rect(color = "black", fill = NA),  # 添加边框
+    panel.grid.major = element_blank(),  # 移除主要网格线
+    panel.grid.minor = element_blank(),  # 移除次要网格线
+    panel.border = element_blank(),  # 移除面板边框
+    panel.background = element_blank(),  # 移除面板背景
+    axis.line = element_line(color = "black"),  # 添加横纵轴线
+    axis.text.x = element_text(angle = 0, hjust = 0.5),  # 水平显示x轴标签
+    axis.ticks = element_line(color = "black"),  # 添加刻度线
+    axis.ticks.length = unit(0.2, "cm")  # 设置刻度线长度
+  )
