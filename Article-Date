@@ -5,6 +5,7 @@
 论文数据上传至 https://github.com/ZhuzhPhloem/sunxc-lab/blob/main/sunxc-lab%E5%A4%8D%E7%8E%B0%E8%AE%BA%E6%96%87%E5%8E%9F%E5%A7%8B%E6%95%B0%E6%8D%AE.xlsx
 可以在该网站raw下载数据
 
+朱震昊4月25日上传代码
 R语言代码 N accumulation (mg)
 # 加载需要的包
 library(ggplot2)
